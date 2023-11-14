@@ -1,0 +1,5 @@
+@font-face {font-family:"TenorSans"; src:url("fonts/TenorSansRegular.woff2") format("woff2"),url("fonts/TenorSansRegular.ttf") format("truetype"); font-weight:normal; font-style:normal; font-display:swap}
+
+@font-face {font-family:"Montserrat"; src:url("fonts/MontserratRegular.woff2") format("woff2"),url("fonts/MontserratRegular.ttf") format("truetype"); font-weight:normal; font-style:normal; font-display:swap}
+@font-face {font-family:"Montserrat"; src:url("fonts/MontserratMedium.woff2") format("woff2"),url("fonts/MontserratMedium.ttf") format("truetype"); font-weight:500; font-style:normal; font-display:swap}
+@font-face {font-family:"Montserrat"; src:url("fonts/MontserratSemibold.woff2") format("woff2"),url("fonts/MontserratSemibold.ttf") format("truetype"); font-weight:600; font-style:normal; font-display:swap}
