@@ -3447,842 +3447,1118 @@
     <div class="building-data">
 
         <script>
-            var dataSelect = {
-                'buildings' : [
+            var dataSelect = {                                                      // данные по квартирам
+                'buildings' : [                                                     // здания
                     {
-                        'id'        : '1',
-                        'title'     : '1 строение',
-                        'titlemin'  : '1',
-                        'floors'    : '18',
-                        'deadline'  : 'II квартал 2027',
-                        'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'ajax/floors.html',
-                        'flats'     : [
+                        'id'        : '1',                                          // ID здания, атрибут data-id у группы <g class="build" data-id=""> в схеме ЖК должен соответствовать
+                        'title'     : '1 строение',                                 // полное название
+                        'titlemin'  : '1',                                          // короткое название для списка квартир и боковых блоков в визуальном выборе    
+                        'deadline'  : 'II квартал 2027',                            // срок сдачи
+                        'photo'     : 'files/select-visual-build.jpg',              // фото в попапе при наведении на здание
+                        'scheme'    : 'files/select-visual-floors.svg',             // схема здания для выбора этажей
+                        'floors'    : [                                             // этажи в здании
                             {
-                                'number'    : '1',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '66.73',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Лоджия',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '2',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '42.88',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '3',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '68,96',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '3',                                  // номер этажа
+                                'path'      : '<path d="M532.627 835.084H64.8311V870.311H532.627V835.084Z" /><path d="M64.8302 862.648H46.7832V869.755H64.8302V862.648Z" />',   // описание фигуры этажа в схеме дома
+                                'scheme'    : 'files/select-visual-floor.svg',      // схема этажа с квартирами
+                                'flats'     : [                                     // квартиры        
+                                    {
+                                        'available' : true,                         // доступность квартиры - недоступные отображаются только на схеме темным цветом
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',    // описание фигуры квартиры в схеме этажа
+                                        'number'    : '1',                          // номер квартиры
+                                        'rooms'     : '3',                          // количество комнат
+                                        'size'      : '66.73',                      // площадь
+                                        'preview'   : 'files/select-list-item.svg', // превью для списка
+                                        'add'       : [                             // дополнительные элементы
+                                            'Лоджия',
+                                        ],
+                                        'url'       : 'detail.html',                // ссылка на детальную страницу квартиры
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M214.229 372.705L32.416 372.816V434.466L0.316406 434.355L0.402344 506.92H31.9824L31.8965 519.638H225.152L225.496 461.183L253.346 461.04C253.346 461.04 253.684 435.688 225.496 434.04C225.496 405.54 223.418 372.708 223.418 372.708L214.229 372.705Z" />',
+                                        'number'    : '2',
+                                        'rooms'     : '2',
+                                        'size'      : '42.88',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M29.5 30H167V8H256V30H369.5V213.5H270V240H265L258 237.5L251.5 233.5L246 226.5L244 220L243 213.5H29.5V30Z" />',
+                                        'number'    : '3',
+                                        'rooms'     : '3',
+                                        'size'      : '68,96',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M370 30H397V1H486.5V30H637.5V215L428.5 213.5V240H423.5L418 238.5L412 235L406.5 228.5L403 222.5L401.5 213.5H370V30Z" />',
+                                        'number'    : '4',
+                                        'rooms'     : '1',
+                                        'size'      : '43.44',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Белая отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 214H226V268.5H253.5L252 278.5L248 286L243.5 290.5L238 293.5L232.5 295.5L226 296.5V369H30V292.5H8V220.5H30V214Z" />',
+                                        'number'    : '5',
+                                        'rooms'     : '3',
+                                        'size'      : '71.82',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Мастер-спальня',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 520H226V573L234.5 575.5L242 579L246 582L249 586.5L252.5 593.5L254 602H226V820H30V709H9.5V625.5H30V520Z" />',
+                                        'number'    : '6',
+                                        'rooms'     : '3',
+                                        'size'      : '54.17',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '7',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : false,
+                                        'path'      : '<path d="M441 382H638V570H441V516H414L415 508.5L417.5 502L422 497L426.5 493L433.5 490.5L441 488.5V382Z" />',
+                                        'number'    : '71',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : false,
+                                        'path'      : '<path d="M442 570H639V819H531.5V840.5H442V819V623H414L414.5 618L415.5 614L417.5 609.5L421.5 604.5L423.5 602.5L426 600.5L431 597.5L437 596H442V570Z" />',
+                                        'number'    : '72',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
                                 'number'    : '4',
-                                'floor'     : '3',
-                                'rooms'     : '1',
-                                'size'      : '43.44',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Белая отделка',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 787.164H64.8311V835.104H532.627V787.164Z" /><path d="M64.8302 815.153H51.7852V837.561H64.8302V815.153Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '8',
+                                        'rooms'     : '3',
+                                        'size'      : '66.73',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Лоджия',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M214.229 372.705L32.416 372.816V434.466L0.316406 434.355L0.402344 506.92H31.9824L31.8965 519.638H225.152L225.496 461.183L253.346 461.04C253.346 461.04 253.684 435.688 225.496 434.04C225.496 405.54 223.418 372.708 223.418 372.708L214.229 372.705Z" />',
+                                        'number'    : '9',
+                                        'rooms'     : '2',
+                                        'size'      : '42.88',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M29.5 30H167V8H256V30H369.5V213.5H270V240H265L258 237.5L251.5 233.5L246 226.5L244 220L243 213.5H29.5V30Z" />',
+                                        'number'    : '10',
+                                        'rooms'     : '3',
+                                        'size'      : '68.96',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M370 30H397V1H486.5V30H637.5V215L428.5 213.5V240H423.5L418 238.5L412 235L406.5 228.5L403 222.5L401.5 213.5H370V30Z" />',
+                                        'number'    : '11',
+                                        'rooms'     : '2',
+                                        'size'      : '43.44',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Белая отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 214H226V268.5H253.5L252 278.5L248 286L243.5 290.5L238 293.5L232.5 295.5L226 296.5V369H30V292.5H8V220.5H30V214Z" />',
+                                        'number'    : '12',
+                                        'rooms'     : '3',
+                                        'size'      : '71.82',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Мастер-спальня',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 520H226V573L234.5 575.5L242 579L246 582L249 586.5L252.5 593.5L254 602H226V820H30V709H9.5V625.5H30V520Z" />',
+                                        'number'    : '13',
+                                        'rooms'     : '3',
+                                        'size'      : '54.17',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '14',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
                                 'number'    : '5',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '71.82',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Мастер-спальня',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 739.253H64.8311V787.193H532.627V739.253Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '',
+                                        'number'    : '15',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
                                 'number'    : '6',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '54.17',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 691.256H64.8311V739.196H532.627V691.256Z" /><path d="M64.8302 719.252H51.7852V741.66H64.8302V719.252Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '16',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
                                 'number'    : '7',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 643.345H64.8311V691.285H532.627V643.345Z" /><path d="M64.8302 671.338H51.7852V693.746H64.8302V671.338Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             },
                             {
                                 'number'    : '8',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '66.73',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Лоджия',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 595.471H64.8311V643.411H532.627V595.471Z" /><path d="M64.8302 623.468H51.7852V645.876H64.8302V623.468Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             },
                             {
                                 'number'    : '9',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '42.88',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 547.56H64.8311V595.5H532.627V547.56Z" /><path d="M64.8302 575.439H51.7852V597.847H64.8302V575.439Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             },
                             {
                                 'number'    : '10',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '68.96',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 499.563H64.8311V547.503H532.627V499.563Z" /><path d="M64.8302 527.48H51.7852V549.888H64.8302V527.48Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '17',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
                                 'number'    : '11',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '43.44',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Белая отделка',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 451.652H64.8311V499.592H532.627V451.652Z" /><path d="M64.8298 479.608H47.3838V502.016H64.8298V479.608Z" /><path d="M550.015 479.608H532.569V502.016H550.015V479.608Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             },
                             {
                                 'number'    : '12',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '71.82',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Мастер-спальня',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 403.712H64.8311V451.652H532.627V403.712Z" /><path d="M64.8302 431.635H51.7852V454.043H64.8302V431.635Z" /><path d="M545.465 431.635H532.569V454.043H545.465V431.635Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '18',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
                                 'number'    : '13',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '54.17',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 355.8H64.8311V403.74H532.627V355.8Z" /><path d="M64.8298 383.77H47.3838V406.178H64.8298V383.77Z" /><path d="M550.015 383.77H532.569V406.178H550.015V383.77Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             },
                             {
                                 'number'    : '14',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'path'      : '<path d="M532.627 307.804H64.8311V355.744H532.627V307.804Z" /><path d="M545.433 335.784H532.57V358.192H545.433V335.784Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             },
                             {
                                 'number'    : '15',
-                                'floor'     : '5',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '16',
-                                'floor'     : '6',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '17',
-                                'floor'     : '10',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '18',
-                                'floor'     : '12',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '19',
-                                'floor'     : '15',
-                                'rooms'     : '4',
-                                'size'      : '145.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Темная отделка',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                        ]
+                                'path'      : '<path d="M532.627 259.893H64.8311V307.833H532.627V259.893Z" /><path d="M64.8299 287.843H51.9189V310.251H64.8299V287.843Z" /><path d="M545.433 287.843H532.57V310.251H545.433V287.843Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '19',
+                                        'rooms'     : '4',
+                                        'size'      : '145.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Темная отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
+                            }
+                        ],
                     },
                     {
                         'id'        : '2',
                         'title'     : '2 строение',
                         'titlemin'  : '2',
-                        'floors'    : '8',
                         'deadline'  : 'II квартал 2027',
                         'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'ajax/floors.html',
-                        'flats'     : [
+                        'scheme'    : 'files/select-visual-floors.svg',
+                        'floors'    : [
                             {
-                                'number'    : '21',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '66.73',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Лоджия',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '3',
+                                'path'      : '<path d="M532.627 835.084H64.8311V870.311H532.627V835.084Z" /><path d="M64.8302 862.648H46.7832V869.755H64.8302V862.648Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '21',
+                                        'rooms'     : '3',
+                                        'size'      : '66.73',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Лоджия',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M214.229 372.705L32.416 372.816V434.466L0.316406 434.355L0.402344 506.92H31.9824L31.8965 519.638H225.152L225.496 461.183L253.346 461.04C253.346 461.04 253.684 435.688 225.496 434.04C225.496 405.54 223.418 372.708 223.418 372.708L214.229 372.705Z" />',
+                                        'number'    : '22',
+                                        'rooms'     : '2',
+                                        'size'      : '42.88',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M29.5 30H167V8H256V30H369.5V213.5H270V240H265L258 237.5L251.5 233.5L246 226.5L244 220L243 213.5H29.5V30Z" />',
+                                        'number'    : '23',
+                                        'rooms'     : '3',
+                                        'size'      : '68.96',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M370 30H397V1H486.5V30H637.5V215L428.5 213.5V240H423.5L418 238.5L412 235L406.5 228.5L403 222.5L401.5 213.5H370V30Z" />',
+                                        'number'    : '24',
+                                        'rooms'     : '2',
+                                        'size'      : '43.44',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Белая отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 214H226V268.5H253.5L252 278.5L248 286L243.5 290.5L238 293.5L232.5 295.5L226 296.5V369H30V292.5H8V220.5H30V214Z" />',
+                                        'number'    : '25',
+                                        'rooms'     : '3',
+                                        'size'      : '71.82',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Мастер-спальня',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 520H226V573L234.5 575.5L242 579L246 582L249 586.5L252.5 593.5L254 602H226V820H30V709H9.5V625.5H30V520Z" />',
+                                        'number'    : '26',
+                                        'rooms'     : '3',
+                                        'size'      : '54.17',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '27',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '22',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '42.88',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '4',
+                                'path'      : '<path d="M532.627 787.164H64.8311V835.104H532.627V787.164Z" /><path d="M64.8302 815.153H51.7852V837.561H64.8302V815.153Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '28',
+                                        'rooms'     : '3',
+                                        'size'      : '66.73',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Лоджия',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M214.229 372.705L32.416 372.816V434.466L0.316406 434.355L0.402344 506.92H31.9824L31.8965 519.638H225.152L225.496 461.183L253.346 461.04C253.346 461.04 253.684 435.688 225.496 434.04C225.496 405.54 223.418 372.708 223.418 372.708L214.229 372.705Z" />',
+                                        'number'    : '29',
+                                        'rooms'     : '2',
+                                        'size'      : '42.88',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M29.5 30H167V8H256V30H369.5V213.5H270V240H265L258 237.5L251.5 233.5L246 226.5L244 220L243 213.5H29.5V30Z" />',
+                                        'number'    : '210',
+                                        'rooms'     : '3',
+                                        'size'      : '68.96',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M370 30H397V1H486.5V30H637.5V215L428.5 213.5V240H423.5L418 238.5L412 235L406.5 228.5L403 222.5L401.5 213.5H370V30Z" />',
+                                        'number'    : '211',
+                                        'rooms'     : '2',
+                                        'size'      : '43.44',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Белая отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 214H226V268.5H253.5L252 278.5L248 286L243.5 290.5L238 293.5L232.5 295.5L226 296.5V369H30V292.5H8V220.5H30V214Z" />',
+                                        'number'    : '212',
+                                        'rooms'     : '3',
+                                        'size'      : '71.82',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Мастер-спальня',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 520H226V573L234.5 575.5L242 579L246 582L249 586.5L252.5 593.5L254 602H226V820H30V709H9.5V625.5H30V520Z" />',
+                                        'number'    : '213',
+                                        'rooms'     : '3',
+                                        'size'      : '54.17',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '23',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '68.96',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '12',
+                                'path'      : '<path d="M532.627 403.712H64.8311V451.652H532.627V403.712Z" /><path d="M64.8302 431.635H51.7852V454.043H64.8302V431.635Z" /><path d="M545.465 431.635H532.569V454.043H545.465V431.635Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '218',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '24',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '43.44',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Белая отделка',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '25',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '71.82',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Мастер-спальня',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '26',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '54.17',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '27',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '28',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '66.73',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Лоджия',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '29',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '42.88',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '210',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '68.96',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '211',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '43.44',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Белая отделка',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '212',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '71.82',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Мастер-спальня',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '213',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '54.17',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '218',
-                                'floor'     : '12',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '219',
-                                'floor'     : '15',
-                                'rooms'     : '4',
-                                'size'      : '145.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Темная отделка',
-                                ],
-                                'url'       : 'detail.html',
-                            },
+                                'number'    : '15',
+                                'path'      : '<path d="M532.627 259.893H64.8311V307.833H532.627V259.893Z" /><path d="M64.8299 287.843H51.9189V310.251H64.8299V287.843Z" /><path d="M545.433 287.843H532.57V310.251H545.433V287.843Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '219',
+                                        'rooms'     : '4',
+                                        'size'      : '145.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Темная отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
+                            }
                         ]
                     },
                     {
                         'id'        : '3',
                         'title'     : '3 строение',
                         'titlemin'  : '3',
-                        'floors'    : '11',
                         'deadline'  : 'II квартал 2027',
                         'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'ajax/floors.html',
-                        'flats'     : [
+                        'scheme'    : 'files/select-visual-floors.svg',
+                        'floors'    : [
                             {
-                                'number'    : '31',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '66.73',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Лоджия',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '3',
+                                'path'      : '<path d="M532.627 835.084H64.8311V870.311H532.627V835.084Z" /><path d="M64.8302 862.648H46.7832V869.755H64.8302V862.648Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '31',
+                                        'rooms'     : '3',
+                                        'size'      : '66.73',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Лоджия',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M214.229 372.705L32.416 372.816V434.466L0.316406 434.355L0.402344 506.92H31.9824L31.8965 519.638H225.152L225.496 461.183L253.346 461.04C253.346 461.04 253.684 435.688 225.496 434.04C225.496 405.54 223.418 372.708 223.418 372.708L214.229 372.705Z" />',
+                                        'number'    : '32',
+                                        'rooms'     : '2',
+                                        'size'      : '42.88',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M29.5 30H167V8H256V30H369.5V213.5H270V240H265L258 237.5L251.5 233.5L246 226.5L244 220L243 213.5H29.5V30Z" />',
+                                        'number'    : '33',
+                                        'rooms'     : '3',
+                                        'size'      : '68.96',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M370 30H397V1H486.5V30H637.5V215L428.5 213.5V240H423.5L418 238.5L412 235L406.5 228.5L403 222.5L401.5 213.5H370V30Z" />',
+                                        'number'    : '34',
+                                        'rooms'     : '2',
+                                        'size'      : '43.44',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Белая отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 214H226V268.5H253.5L252 278.5L248 286L243.5 290.5L238 293.5L232.5 295.5L226 296.5V369H30V292.5H8V220.5H30V214Z" />',
+                                        'number'    : '35',
+                                        'rooms'     : '3',
+                                        'size'      : '71.82',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Мастер-спальня',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 520H226V573L234.5 575.5L242 579L246 582L249 586.5L252.5 593.5L254 602H226V820H30V709H9.5V625.5H30V520Z" />',
+                                        'number'    : '36',
+                                        'rooms'     : '3',
+                                        'size'      : '54.17',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '37',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '32',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '42.88',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '4',
+                                'path'      : '<path d="M532.627 787.164H64.8311V835.104H532.627V787.164Z" /><path d="M64.8302 815.153H51.7852V837.561H64.8302V815.153Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '38',
+                                        'rooms'     : '3',
+                                        'size'      : '66.73',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Лоджия',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M214.229 372.705L32.416 372.816V434.466L0.316406 434.355L0.402344 506.92H31.9824L31.8965 519.638H225.152L225.496 461.183L253.346 461.04C253.346 461.04 253.684 435.688 225.496 434.04C225.496 405.54 223.418 372.708 223.418 372.708L214.229 372.705Z" />',
+                                        'number'    : '39',
+                                        'rooms'     : '2',
+                                        'size'      : '42.88',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M29.5 30H167V8H256V30H369.5V213.5H270V240H265L258 237.5L251.5 233.5L246 226.5L244 220L243 213.5H29.5V30Z" />',
+                                        'number'    : '310',
+                                        'rooms'     : '3',
+                                        'size'      : '68.96',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M370 30H397V1H486.5V30H637.5V215L428.5 213.5V240H423.5L418 238.5L412 235L406.5 228.5L403 222.5L401.5 213.5H370V30Z" />',
+                                        'number'    : '311',
+                                        'rooms'     : '2',
+                                        'size'      : '43.44',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Белая отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 214H226V268.5H253.5L252 278.5L248 286L243.5 290.5L238 293.5L232.5 295.5L226 296.5V369H30V292.5H8V220.5H30V214Z" />',
+                                        'number'    : '312',
+                                        'rooms'     : '3',
+                                        'size'      : '71.82',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Мастер-спальня',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 520H226V573L234.5 575.5L242 579L246 582L249 586.5L252.5 593.5L254 602H226V820H30V709H9.5V625.5H30V520Z" />',
+                                        'number'    : '313',
+                                        'rooms'     : '3',
+                                        'size'      : '54.17',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '314',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '33',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '68.96',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '5',
+                                'path'      : '<path d="M532.627 739.253H64.8311V787.193H532.627V739.253Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '315',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '34',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '43.44',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Белая отделка',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '10',
+                                'path'      : '<path d="M532.627 499.563H64.8311V547.503H532.627V499.563Z" /><path d="M64.8302 527.48H51.7852V549.888H64.8302V527.48Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '317',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '35',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '71.82',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Мастер-спальня',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '12',
+                                'path'      : '<path d="M532.627 403.712H64.8311V451.652H532.627V403.712Z" /><path d="M64.8302 431.635H51.7852V454.043H64.8302V431.635Z" /><path d="M545.465 431.635H532.569V454.043H545.465V431.635Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '318',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '36',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '54.17',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '37',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '38',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '66.73',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Лоджия',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '39',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '42.88',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '310',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '68.96',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '311',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '43.44',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Белая отделка',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '312',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '71.82',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Мастер-спальня',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '313',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '54.17',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '314',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '315',
-                                'floor'     : '5',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '317',
-                                'floor'     : '10',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '318',
-                                'floor'     : '12',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '319',
-                                'floor'     : '15',
-                                'rooms'     : '4',
-                                'size'      : '145.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Темная отделка',
-                                ],
-                                'url'       : 'detail.html',
-                            },
+                                'number'    : '15',
+                                'path'      : '<path d="M532.627 259.893H64.8311V307.833H532.627V259.893Z" /><path d="M64.8299 287.843H51.9189V310.251H64.8299V287.843Z" /><path d="M545.433 287.843H532.57V310.251H545.433V287.843Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '319',
+                                        'rooms'     : '4',
+                                        'size'      : '145.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Темная отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
+                            }
                         ]
                     },
                     {
                         'id'        : '4',
                         'title'     : '4 строение',
                         'titlemin'  : '4',
-                        'floors'    : '18',
                         'deadline'  : 'III квартал 2027',
                         'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'ajax/floors.html',
-                        'flats'     : [
+                        'scheme'    : 'files/select-visual-floors.svg',
+                        'floors'    : [
                         ]
                     },
                     {
                         'id'        : '5',
                         'title'     : '5 строение',
                         'titlemin'  : '5',
-                        'floors'    : '17',
                         'deadline'  : 'IV квартал 2027',
                         'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'ajax/floors.html',
-                        'flats'     : [
+                        'scheme'    : 'files/select-visual-floors.svg',
+                        'floors'    : [
                             {
-                                'number'    : '51',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '66.73',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Лоджия',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '3',
+                                'path'      : '<path d="M532.627 835.084H64.8311V870.311H532.627V835.084Z" /><path d="M64.8302 862.648H46.7832V869.755H64.8302V862.648Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '51',
+                                        'rooms'     : '3',
+                                        'size'      : '66.73',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Лоджия',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M214.229 372.705L32.416 372.816V434.466L0.316406 434.355L0.402344 506.92H31.9824L31.8965 519.638H225.152L225.496 461.183L253.346 461.04C253.346 461.04 253.684 435.688 225.496 434.04C225.496 405.54 223.418 372.708 223.418 372.708L214.229 372.705Z" />',
+                                        'number'    : '52',
+                                        'rooms'     : '2',
+                                        'size'      : '42.88',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M29.5 30H167V8H256V30H369.5V213.5H270V240H265L258 237.5L251.5 233.5L246 226.5L244 220L243 213.5H29.5V30Z" />',
+                                        'number'    : '53',
+                                        'rooms'     : '3',
+                                        'size'      : '68.96',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M370 30H397V1H486.5V30H637.5V215L428.5 213.5V240H423.5L418 238.5L412 235L406.5 228.5L403 222.5L401.5 213.5H370V30Z" />',
+                                        'number'    : '54',
+                                        'rooms'     : '2',
+                                        'size'      : '43.44',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Белая отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 214H226V268.5H253.5L252 278.5L248 286L243.5 290.5L238 293.5L232.5 295.5L226 296.5V369H30V292.5H8V220.5H30V214Z" />',
+                                        'number'    : '55',
+                                        'rooms'     : '3',
+                                        'size'      : '71.82',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Мастер-спальня',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 520H226V573L234.5 575.5L242 579L246 582L249 586.5L252.5 593.5L254 602H226V820H30V709H9.5V625.5H30V520Z" />',
+                                        'number'    : '56',
+                                        'rooms'     : '3',
+                                        'size'      : '54.17',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '57',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '52',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '42.88',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '4',
+                                'path'      : '<path d="M532.627 787.164H64.8311V835.104H532.627V787.164Z" /><path d="M64.8302 815.153H51.7852V837.561H64.8302V815.153Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',
+                                        'number'    : '58',
+                                        'rooms'     : '3',
+                                        'size'      : '66.73',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Лоджия',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M214.229 372.705L32.416 372.816V434.466L0.316406 434.355L0.402344 506.92H31.9824L31.8965 519.638H225.152L225.496 461.183L253.346 461.04C253.346 461.04 253.684 435.688 225.496 434.04C225.496 405.54 223.418 372.708 223.418 372.708L214.229 372.705Z" />',
+                                        'number'    : '59',
+                                        'rooms'     : '2',
+                                        'size'      : '42.88',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M29.5 30H167V8H256V30H369.5V213.5H270V240H265L258 237.5L251.5 233.5L246 226.5L244 220L243 213.5H29.5V30Z" />',
+                                        'number'    : '510',
+                                        'rooms'     : '3',
+                                        'size'      : '68.96',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M370 30H397V1H486.5V30H637.5V215L428.5 213.5V240H423.5L418 238.5L412 235L406.5 228.5L403 222.5L401.5 213.5H370V30Z" />',
+                                        'number'    : '511',
+                                        'rooms'     : '2',
+                                        'size'      : '43.44',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                            'Мастер-спальня',
+                                            'Гардеробная',
+                                            'Белая отделка',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 214H226V268.5H253.5L252 278.5L248 286L243.5 290.5L238 293.5L232.5 295.5L226 296.5V369H30V292.5H8V220.5H30V214Z" />',
+                                        'number'    : '512',
+                                        'rooms'     : '3',
+                                        'size'      : '71.82',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Мастер-спальня',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M30 520H226V573L234.5 575.5L242 579L246 582L249 586.5L252.5 593.5L254 602H226V820H30V709H9.5V625.5H30V520Z" />',
+                                        'number'    : '513',
+                                        'rooms'     : '3',
+                                        'size'      : '54.17',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '514',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '53',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '68.96',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
+                                'number'    : '5',
+                                'path'      : '<path d="M532.627 739.253H64.8311V787.193H532.627V739.253Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '515',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
                             },
                             {
-                                'number'    : '54',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '43.44',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Белая отделка',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '55',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '71.82',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Мастер-спальня',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '56',
-                                'floor'     : '3',
-                                'rooms'     : '3',
-                                'size'      : '54.17',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '57',
-                                'floor'     : '3',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '58',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '66.73',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Лоджия',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '59',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '42.88',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '510',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '68.96',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '511',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '43.44',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                    'Мастер-спальня',
-                                    'Гардеробная',
-                                    'Белая отделка',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '512',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '71.82',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Мастер-спальня',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '513',
-                                'floor'     : '4',
-                                'rooms'     : '3',
-                                'size'      : '54.17',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '514',
-                                'floor'     : '4',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '515',
-                                'floor'     : '5',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
-                            {
-                                'number'    : '516',
-                                'floor'     : '6',
-                                'rooms'     : '2',
-                                'size'      : '45.71',
-                                'preview'   : 'files/select-list-item.svg',
-                                'add'       : [
-                                    'Балкон',
-                                ],
-                                'url'       : 'detail.html',
-                            },
+                                'number'    : '6',
+                                'path'      : '<path d="M532.627 691.256H64.8311V739.196H532.627V691.256Z" /><path d="M64.8302 719.252H51.7852V741.66H64.8302V719.252Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                    {
+                                        'available' : true,
+                                        'path'      : '<path d="M227 664H246.5V637L252 638L258.5 640L265.5 644.5L271 651.5L273.5 659L274 664H275.5V629H442V820H227V664Z" />',
+                                        'number'    : '516',
+                                        'rooms'     : '2',
+                                        'size'      : '45.71',
+                                        'preview'   : 'files/select-list-item.svg',
+                                        'add'       : [
+                                            'Балкон',
+                                        ],
+                                        'url'       : 'detail.html',
+                                    },
+                                ]
+                            }
                         ]
                     }
                 ]

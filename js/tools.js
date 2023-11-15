@@ -257,6 +257,7 @@ $(document).ready(function() {
             $('.select-visual-build-scheme-inner').html($(html).find('.building-scheme').html());
             $('.select-filter-building').html($(html).find('.building-scheme').html());
             $('.select-visual-floor-params-build-scheme').html($(html).find('.building-scheme').html());
+            $('.select-visual-flat-params-build-scheme').html($(html).find('.building-scheme').html());
             $('.select-data').html($(html).find('.building-data').html());
             if (typeof(dataSelect) != 'undefined') {
                 var htmlCheckboxesBuilds = '';
@@ -268,13 +269,21 @@ $(document).ready(function() {
                     var curBuild = dataSelect.buildings[i];
                     var curHint = $('.select-visual-build-scheme-hint[data-id="' + curBuild.id + '"]');
                     if (curHint.length == 1) {
-                        curHint.find('.select-visual-build-scheme-hint-floor-count').html(curBuild.floors);
-                        curHint.find('.select-visual-build-scheme-hint-floor-text').html(getFloorsText(Number(curBuild.floors)));
+                        curHint.find('.select-visual-build-scheme-hint-floor-count').html(curBuild.floors.length);
+                        curHint.find('.select-visual-build-scheme-hint-floor-text').html(getFloorsText(Number(curBuild.floors.length)));
                         curHint.find('.select-visual-build-scheme-hint-deadline span').html(curBuild.deadline);
                         curHint.find('.select-visual-build-scheme-hint-preview').html('<img src="' + curBuild.photo + '" alt="">');
-                        if (curBuild.flats.length > 0) {
-                            curHint.find('.select-visual-build-scheme-hint-available span').html(curBuild.flats.length);
-                            curHint.find('.select-visual-build-scheme-hint-available strong').html(getFlatsText(curBuild.flats.length));
+                        var countFlats = 0;
+                        for (var j = 0; j < curBuild.floors.length; j++) {
+                            for (var k = 0; k < curBuild.floors[j].flats.length; k++) {
+                                if (curBuild.floors[j].flats[k].available) {
+                                    countFlats++;
+                                }
+                            }
+                        }
+                        if (countFlats > 0) {
+                            curHint.find('.select-visual-build-scheme-hint-available span').html(countFlats);
+                            curHint.find('.select-visual-build-scheme-hint-available strong').html(getFlatsText(countFlats));
                         } else {
                             curHint.find('.select-visual-build-scheme-hint-available').html($('.select-visual').attr('data-notavailable'));
                         }
@@ -282,24 +291,30 @@ $(document).ready(function() {
 
                     htmlCheckboxesBuilds += '<label><input type="checkbox" name="build[]" value="' + curBuild.id + '"><span>' + curBuild.title + '</span></label>';
 
-                    for (var j = 0; j < curBuild.flats.length; j++) {
-                        var curFlat = curBuild.flats[j];
-                        curFlat.buildtitle = curBuild.titlemin;
-                        if (checkboxesRooms.indexOf(curFlat.rooms) == -1) {
-                            checkboxesRooms.push(curFlat.rooms);
-                        }
-                        var isHasSize = true;
-                        for (var k = 0; k < checkboxesSizes.length; k++) {
-                            if (checkboxesSizes[k][0] == String(curFlat.size).replace(',', '.')) {
-                                isHasSize = false;
-                            }
-                        }
-                        if (isHasSize) {
-                            checkboxesSizes.push([String(curFlat.size).replace(',', '.'), curFlat.rooms]);
-                        }
-                        for (var k = 0; k < curFlat.add.length; k++) {
-                            if (checkboxesAdds.indexOf(curFlat.add[k]) == -1) {
-                                checkboxesAdds.push(curFlat.add[k]);
+                    for (var j = 0; j < curBuild.floors.length; j++) {
+                        var curFloor = curBuild.floors[j];
+                        for (var k = 0; k < curFloor.flats.length; k++) {
+                            var curFlat = curFloor.flats[k];
+                            if (curFlat.available) {
+                                curFlat.buildtitle = curBuild.titlemin;
+                                curFlat.floor = curFloor.number;
+                                if (checkboxesRooms.indexOf(curFlat.rooms) == -1) {
+                                    checkboxesRooms.push(curFlat.rooms);
+                                }
+                                var isHasSize = true;
+                                for (var m = 0; m < checkboxesSizes.length; m++) {
+                                    if (checkboxesSizes[m][0] == String(curFlat.size).replace(',', '.')) {
+                                        isHasSize = false;
+                                    }
+                                }
+                                if (isHasSize) {
+                                    checkboxesSizes.push([String(curFlat.size).replace(',', '.'), curFlat.rooms]);
+                                }
+                                for (var m = 0; m < curFlat.add.length; m++) {
+                                    if (checkboxesAdds.indexOf(curFlat.add[m]) == -1) {
+                                        checkboxesAdds.push(curFlat.add[m]);
+                                    }
+                                }
                             }
                         }
                     }
@@ -367,18 +382,49 @@ $(document).ready(function() {
                 dataType: 'html',
                 cache: false
             }).done(function(html) {
-                $('.select-visual-floor-scheme-inner').html(html);
+                var newHTML = $('<div>' + html + '</div>');
+
+                var htmlFloors = '';
+                for (var i = 0; i < curBuild.floors.length; i++) {
+                    var curFloor = curBuild.floors[i];
+                    htmlFloors += '<g class="floor" data-id="' + curFloor.number + '">' + curFloor.path + '</g>';
+                }
+
+                newHTML.find('svg').prepend(htmlFloors);
+
+                $('.select-visual-floor-scheme-inner').html(newHTML.html());
+                $('.select-visual-flat-params-floor-scheme').html(newHTML.html());
             });
             $('.select-visual-floor-params-build-title span').html(curBuild.titlemin);
             $('.select-visual-floor-params-build-scheme .build.active').removeClass('active');
             $('.select-visual-floor-params-build-scheme .build[data-id="' + curID + '"]').addClass('active');
-            $('.select-visual-floor-params-build-floors').html(curBuild.floors);
-            $('.select-visual-floor-params-build-flats').html(curBuild.flats.length);
+            $('.select-visual-floor-params-build-floors').html(curBuild.floors.length);
+            var countFlats = 0;
+            for (var i = 0; i < curBuild.floors.length; i++) {
+                for (var j = 0; j < curBuild.floors[i].flats.length; j++) {
+                    if (curBuild.floors[i].flats[j].available) {
+                        countFlats++;
+                    }
+                }
+            }
+            $('.select-visual-floor-params-build-flats').html(countFlats);
             $('.select-visual-floor-scheme-hint-deadline').html(curBuild.deadline);
+
+            $('.select-visual-flat-params-build-title span').html(curBuild.titlemin);
+            $('.select-visual-flat-params-build-scheme .build.active').removeClass('active');
+            $('.select-visual-flat-params-build-scheme .build[data-id="' + curID + '"]').addClass('active');
+            $('.select-visual-flat-scheme-hint-deadline').html(curBuild.deadline);
         }
 
         $('.select-visual-build').addClass('hidden');
         $('.select-visual-floor').removeClass('hidden');
+    });
+
+    $('.select-visual-floor .back-link a').click(function(e) {
+        $('.select-visual-build').removeClass('hidden');
+        $('.select-visual-floor').addClass('hidden');
+
+        e.preventDefault();
     });
 
     $('body').on('mouseenter', '.select-visual-floor-scheme-inner .floor', function(e) {
@@ -387,11 +433,15 @@ $(document).ready(function() {
         var countFlats = 0;
         for (var i = 0; i < dataSelect.buildings.length; i++) {
             if (dataSelect.buildings[i].id == buildID) {
-                var curFlats = dataSelect.buildings[i].flats;
-                for (var j = 0; j < curFlats.length; j++) {
-                    var curFlat = curFlats[j];
-                    if (curFlat.floor == floorID) {
-                        countFlats++;
+                for (var j = 0; j < dataSelect.buildings[i].floors.length; j++) {
+                    if (dataSelect.buildings[i].floors[j].number == floorID) {
+                        var curFlats = dataSelect.buildings[i].floors[j].flats;
+                        for (var k = 0; k < curFlats.length; k++) {
+                            var curFlat = curFlats[k];
+                            if (curFlat.available) {
+                                countFlats++;
+                            }
+                        }
                     }
                 }
             }
@@ -416,11 +466,89 @@ $(document).ready(function() {
         $('.select-visual-floor-scheme-hint').removeClass('visible');
     });
 
-    $('.select-visual-floor .back-link a').click(function(e) {
-        $('.select-visual-build').removeClass('hidden');
+    $('body').on('click', '.select-visual-floor-scheme-inner .floor', function() {
+        var curID = $(this).attr('data-id');
+        $('.select-visual-flat-params-floor-title span').html(curID);
+        $('.select-visual-flat-params-floor-scheme .floor.active').removeClass('active');
+        $('.select-visual-flat-params-floor-scheme .floor[data-id="' + curID + '"]').addClass('active');
+        var buildID = $('.select-visual-flat-params-build-scheme .build.active').attr('data-id');
+        var curFloor = null;
+        var curBuild = null;
+        for (var i = 0; i < dataSelect.buildings.length; i++) {
+            if (dataSelect.buildings[i].id == buildID) {
+                curBuild = dataSelect.buildings[i];
+                for (var j = 0; j < curBuild.floors.length; j++) {
+                    if (curBuild.floors[j].number == curID) {
+                        curFloor = curBuild.floors[j];
+                    }
+                }
+            }
+        }
+        if (curFloor != null) {
+            $.ajax({
+                type: 'POST',
+                url: curFloor.scheme,
+                processData: false,
+                contentType: false,
+                dataType: 'html',
+                cache: false
+            }).done(function(html) {
+                var newHTML = $('<div>' + html + '</div>');
+
+                var htmlFlats = '';
+                for (var i = 0; i < curFloor.flats.length; i++) {
+                    var curFlat = curFloor.flats[i];
+                    var classDisabled = '';
+                    if (!curFlat.available) {
+                        classDisabled = 'disabled'
+                    }
+                    htmlFlats += '<g class="flat ' + classDisabled + '" data-available="' + curFlat.available + '" data-number="' + curFlat.number + '" data-rooms="' + curFlat.rooms + '" data-size="' + curFlat.size + '" data-url="' + curFlat.url + '">' + curFlat.path + '</g>';
+                }
+
+                newHTML.find('svg').append(htmlFlats);
+
+                $('.select-visual-flat-scheme-inner').html(newHTML.html());
+            });
+            $('.select-visual-flat-scheme-hint-deadline').html(curBuild.deadline);
+
+        }
+
         $('.select-visual-floor').addClass('hidden');
+        $('.select-visual-flat').removeClass('hidden');
+    });
+
+    $('.select-visual-flat .back-link a').click(function(e) {
+        $('.select-visual-floor').removeClass('hidden');
+        $('.select-visual-flat').addClass('hidden');
 
         e.preventDefault();
+    });
+
+    $('body').on('mouseenter', '.select-visual-flat-scheme-inner .flat', function(e) {
+        var curFlat = $(this);
+        if (curFlat.attr('data-available') == 'true') {
+            $('.select-visual-flat-scheme-hint-flat-number').html(curFlat.attr('data-number'));
+            $('.select-visual-flat-scheme-hint-flat-rooms').html(curFlat.attr('data-rooms'));
+            $('.select-visual-flat-scheme-hint-flat-size').html(curFlat.attr('data-size'));
+            $('.select-visual-flat-scheme-hint').addClass('visible');
+            $('.select-visual-flat-scheme-hint').css({'top': e.pageY - $('.select-visual-flat-scheme-inner').offset().top});
+        }
+    });
+
+    $('body').on('mousemove', '.select-visual-flat-scheme-inner .flat', function(e) {
+        $('.select-visual-flat-scheme-hint').css({'top': e.pageY - $('.select-visual-flat-scheme-inner').offset().top});
+    });
+
+    $('body').on('mouseleave', '.select-visual-flat-scheme-inner .flat', function() {
+        $('.select-visual-flat-scheme-hint').removeClass('visible');
+    });
+
+    $('body').on('click', '.select-visual-flat-scheme-inner .flat', function() {
+        var curFlat = $(this);
+        if (curFlat.attr('data-available') == 'true') {
+            var curURL = curFlat.attr('data-url');
+            window.location = curURL;
+        }
     });
 
     $('body').on('click', '.select-filter-building .build', function() {
@@ -492,6 +620,13 @@ $(document).ready(function() {
 
     Fancybox.bind('[data-fancybox]');
 
+    $('.detail-finish-slider').each(function() {
+        var curSlider = $(this);
+        const swiper = new Swiper(curSlider.find('.swiper')[0], {
+            slidesPerView: 'auto'
+        });
+    });
+
 });
 
 var listSize = 20;
@@ -507,23 +642,27 @@ function updateSelectList() {
         for (var i = 0; i < dataSelect.buildings.length; i++) {
             var curBuild = dataSelect.buildings[i];
             if ($('.select-filter-group-checkboxes-building input:checked').length == 0 || $('.select-filter-group-checkboxes-building input[value="' + curBuild.id + '"]:checked').length == 1) {
-                for (var j = 0; j < curBuild.flats.length; j++) {
-                    var curFlat = curBuild.flats[j];
-                    if ($('.select-filter-group-checkboxes-rooms input:checked').length == 0 || $('.select-filter-group-checkboxes-rooms input[value="' + curFlat.rooms + '"]:checked').length == 1) {
-                        if ($('.select-filter-group-checkboxes-sizes input:checked').length == 0 || $('.select-filter-group-checkboxes-sizes input[value="' + String(curFlat.size).replace(',', '.') + '"]:checked').length == 1) {
-                            if ($('.select-filter-group-checkboxes-adds input:checked').length == 0) {
-                                newData.push(curFlat);
-                            } else {
-                                var curAdds = curFlat.add;
-                                var isHas = false;
-                                $('.select-filter-group-checkboxes-adds input:checked').each(function() {
-                                    var curAdd = $(this).val();
-                                    if (curAdds.indexOf(curAdd) != -1) {
-                                        isHas = true;
+                for (var j = 0; j < curBuild.floors.length; j++) {
+                    for (var k = 0; k < curBuild.floors[j].flats.length; k++) {
+                        var curFlat = curBuild.floors[j].flats[k];
+                        if (curFlat.available) {
+                            if ($('.select-filter-group-checkboxes-rooms input:checked').length == 0 || $('.select-filter-group-checkboxes-rooms input[value="' + curFlat.rooms + '"]:checked').length == 1) {
+                                if ($('.select-filter-group-checkboxes-sizes input:checked').length == 0 || $('.select-filter-group-checkboxes-sizes input[value="' + String(curFlat.size).replace(',', '.') + '"]:checked').length == 1) {
+                                    if ($('.select-filter-group-checkboxes-adds input:checked').length == 0) {
+                                        newData.push(curFlat);
+                                    } else {
+                                        var curAdds = curFlat.add;
+                                        var isHas = false;
+                                        $('.select-filter-group-checkboxes-adds input:checked').each(function() {
+                                            var curAdd = $(this).val();
+                                            if (curAdds.indexOf(curAdd) != -1) {
+                                                isHas = true;
+                                            }
+                                        });
+                                        if (isHas) {
+                                            newData.push(curFlat);
+                                        }
                                     }
-                                });
-                                if (isHas) {
-                                    newData.push(curFlat);
                                 }
                             }
                         }
