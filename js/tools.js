@@ -375,7 +375,7 @@ $(document).ready(function() {
         }
         if (curBuild != null) {
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: curBuild.scheme,
                 processData: false,
                 contentType: false,
@@ -390,6 +390,7 @@ $(document).ready(function() {
                     htmlFloors += '<g class="floor" data-id="' + curFloor.number + '">' + curFloor.path + '</g>';
                 }
 
+                newHTML.find('svg').wrapInner('<g class="others"></g>');
                 newHTML.find('svg').prepend(htmlFloors);
 
                 $('.select-visual-floor-scheme-inner').html(newHTML.html());
@@ -486,7 +487,7 @@ $(document).ready(function() {
         }
         if (curFloor != null) {
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: curFloor.scheme,
                 processData: false,
                 contentType: false,
@@ -625,6 +626,22 @@ $(document).ready(function() {
         const swiper = new Swiper(curSlider.find('.swiper')[0], {
             slidesPerView: 'auto'
         });
+    });
+
+    $('.select-filter-mobile-link a').click(function(e) {
+        $('.wrapper').data('scrollTop', $(window).scrollTop());
+        $('html').addClass('filter-mobile-open');
+        e.preventDefault();
+    });
+
+    $('.select-filter-mobile-close a').click(function(e) {
+        $('html').removeClass('filter-mobile-open');
+        $(window).scrollTop($('.wrapper').data('scrollTop'));
+        e.preventDefault();
+    });
+
+    $('.detail-block-title').click(function() {
+        $(this).parent().toggleClass('open');
     });
 
 });
