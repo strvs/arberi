@@ -3452,16 +3452,17 @@
                     {
                         'id'        : '1',                                          // ID здания, атрибут data-id у группы <g class="build" data-id=""> в схеме ЖК должен соответствовать
                         'title'     : '1 строение',                                 // полное название
-                        'titlemin'  : '1',                                          // короткое название для списка квартир и боковых блоков в визуальном выборе    
+                        'titlemin'  : '1',                                          // короткое название для списка квартир и боковых блоков в визуальном выборе
                         'deadline'  : 'II квартал 2027',                            // срок сдачи
                         'photo'     : 'files/select-visual-build.jpg',              // фото в попапе при наведении на здание
-                        'scheme'    : 'files/select-visual-floors.svg',             // схема здания для выбора этажей
+                        'scheme'    : 'files/select-visual-floors-1.svg',             // схема здания для выбора этажей
+                        'fcount'    : 18,                                           // количество этажей
                         'floors'    : [                                             // этажи в здании
                             {
                                 'number'    : '3',                                  // номер этажа
                                 'path'      : '<path d="M532.627 835.084H64.8311V870.311H532.627V835.084Z" /><path d="M64.8302 862.648H46.7832V869.755H64.8302V862.648Z" />',   // описание фигуры этажа в схеме дома
                                 'scheme'    : 'files/select-visual-floor.svg',      // схема этажа с квартирами
-                                'flats'     : [                                     // квартиры        
+                                'flats'     : [                                     // квартиры
                                     {
                                         'available' : true,                         // доступность квартиры - недоступные отображаются только на схеме темным цветом
                                         'path'      : '<path d="M441.475 380.69V296.43C414.262 294.852 414.562 269.451 414.562 269.451L415.815 269.591H441.474V217H638.816L638.806 223.632L660.405 223.652V296.746L638.758 296.726L638.716 362.826V380.69H441.475Z" />',    // описание фигуры квартиры в схеме этажа
@@ -3808,6 +3809,27 @@
                                         'url'       : 'detail.html',
                                     },
                                 ]
+                            },
+                            {
+                                'number'    : '16',
+                                'path'      : '<path d="M532.627 211.934H64.8311V259.874H532.627V211.934Z" /><path d="M64.8298 239.834H47.3838V262.242H64.8298V239.834Z" /><path d="M550.015 239.834H532.569V262.242H550.015V239.834Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '17',
+                                'path'      : '<path d="M532.627 164.023H64.8311V211.963H532.627V164.023Z" /><path d="M64.8303 191.924H51.6523V214.332H64.8303V191.924Z" /><path d="M550.015 191.924H532.569V214.332H550.015V191.924Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '18',
+                                'path'      : '<path d="M532.627 116.026H64.8311V163.966H532.627V116.026Z" /><path d="M64.8298 143.958H47.3838V166.366H64.8298V143.958Z" /><path d="M545.433 143.958H532.57V166.366H545.433V143.958Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             }
                         ],
                     },
@@ -3817,11 +3839,12 @@
                         'titlemin'  : '2',
                         'deadline'  : 'II квартал 2027',
                         'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'files/select-visual-floors.svg',
+                        'scheme'    : 'files/select-visual-floors-2.svg',
+                        'fcount'    : 8,
                         'floors'    : [
                             {
-                                'number'    : '3',
-                                'path'      : '<path d="M532.627 835.084H64.8311V870.311H532.627V835.084Z" /><path d="M64.8302 862.648H46.7832V869.755H64.8302V862.648Z" />',
+                                'number'    : '2',
+                                'path'      : '<path d="M588.328 373.504H9.81543V420.094H588.328V373.504Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -3914,8 +3937,8 @@
                                 ]
                             },
                             {
-                                'number'    : '4',
-                                'path'      : '<path d="M532.627 787.164H64.8311V835.104H532.627V787.164Z" /><path d="M64.8302 815.153H51.7852V837.561H64.8302V815.153Z" />',
+                                'number'    : '3',
+                                'path'      : '<path d="M588.328 321.895H9.81543V374.504H588.328V321.895Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -3996,8 +4019,8 @@
                                 ]
                             },
                             {
-                                'number'    : '12',
-                                'path'      : '<path d="M532.627 403.712H64.8311V451.652H532.627V403.712Z" /><path d="M64.8302 431.635H51.7852V454.043H64.8302V431.635Z" /><path d="M545.465 431.635H532.569V454.043H545.465V431.635Z" />',
+                                'number'    : '4',
+                                'path'      : '<path d="M588.328 269.285H9.81543V321.895H588.328V269.285Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4015,8 +4038,8 @@
                                 ]
                             },
                             {
-                                'number'    : '15',
-                                'path'      : '<path d="M532.627 259.893H64.8311V307.833H532.627V259.893Z" /><path d="M64.8299 287.843H51.9189V310.251H64.8299V287.843Z" /><path d="M545.433 287.843H532.57V310.251H545.433V287.843Z" />',
+                                'number'    : '5',
+                                'path'      : '<path d="M588.328 216.65H9.81543V269.26H588.328V216.65Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4035,6 +4058,27 @@
                                         'url'       : 'detail.html',
                                     },
                                 ]
+                            },
+                            {
+                                'number'    : '6',
+                                'path'      : '<path d="M588.328 164.047H9.81543V216.656H588.328V164.047Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '7',
+                                'path'      : '<path d="M588.328 111.438H9.81543V164.047H588.328V111.438Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '8',
+                                'path'      : '<path d="M588.328 58.8281H9.81543V111.438H588.328V58.8281Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             }
                         ]
                     },
@@ -4044,11 +4088,12 @@
                         'titlemin'  : '3',
                         'deadline'  : 'II квартал 2027',
                         'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'files/select-visual-floors.svg',
+                        'scheme'    : 'files/select-visual-floors-3.svg',
+                        'fcount'    : 11,
                         'floors'    : [
                             {
                                 'number'    : '3',
-                                'path'      : '<path d="M532.627 835.084H64.8311V870.311H532.627V835.084Z" /><path d="M64.8302 862.648H46.7832V869.755H64.8302V862.648Z" />',
+                                'path'      : '<path d="M556.759 617.277H33.0195V685.091H556.759V617.277Z" /><path d="M34.8179 654.524H15.2393V666.855H34.8179V654.524Z" /><path d="M581.596 654.429H556.759V686.018H581.596V654.429Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4142,7 +4187,7 @@
                             },
                             {
                                 'number'    : '4',
-                                'path'      : '<path d="M532.627 787.164H64.8311V835.104H532.627V787.164Z" /><path d="M64.8302 815.153H51.7852V837.561H64.8302V815.153Z" />',
+                                'path'      : '<path d="M556.759 549.687H33.0195V617.293H556.759V549.687Z" /><path d="M33.4833 586.75H15.2393V618.299H33.4833V586.75Z" /><path d="M581.811 586.75H556.759V618.299H581.811V586.75Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4236,7 +4281,7 @@
                             },
                             {
                                 'number'    : '5',
-                                'path'      : '<path d="M532.627 739.253H64.8311V787.193H532.627V739.253Z" />',
+                                'path'      : '<path d="M556.759 481.85H33.0195V549.456H556.759V481.85Z" /><path d="M33.4833 519.104H8.43066V550.654H33.4833V519.104Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4254,8 +4299,8 @@
                                 ]
                             },
                             {
-                                'number'    : '10',
-                                'path'      : '<path d="M532.627 499.563H64.8311V547.503H532.627V499.563Z" /><path d="M64.8302 527.48H51.7852V549.888H64.8302V527.48Z" />',
+                                'number'    : '6',
+                                'path'      : '<path d="M556.759 414.291H33.0195V481.897H556.759V414.291Z" /><path d="M33.4833 451.347H15.2393V482.896H33.4833V451.347Z" /><path d="M581.811 451.347H556.759V482.896H581.811V451.347Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4273,8 +4318,8 @@
                                 ]
                             },
                             {
-                                'number'    : '12',
-                                'path'      : '<path d="M532.627 403.712H64.8311V451.652H532.627V403.712Z" /><path d="M64.8302 431.635H51.7852V454.043H64.8302V431.635Z" /><path d="M545.465 431.635H532.569V454.043H545.465V431.635Z" />',
+                                'number'    : '7',
+                                'path'      : '<path d="M556.759 346.453H33.0195V414.059H556.759V346.453Z" /><path d="M33.4833 383.668H8.43066V415.218H33.4833V383.668Z" /><path d="M581.811 383.668H556.759V415.218H581.811V383.668Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4292,8 +4337,8 @@
                                 ]
                             },
                             {
-                                'number'    : '15',
-                                'path'      : '<path d="M532.627 259.893H64.8311V307.833H532.627V259.893Z" /><path d="M64.8299 287.843H51.9189V310.251H64.8299V287.843Z" /><path d="M545.433 287.843H532.57V310.251H545.433V287.843Z" />',
+                                'number'    : '8',
+                                'path'      : '<path d="M556.759 278.847H33.0195V346.453H556.759V278.847Z" /><path d="M33.4833 316.149H8.43066V347.699H33.4833V316.149Z" /><path d="M581.811 316.149H556.759V347.699H581.811V316.149Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4312,6 +4357,27 @@
                                         'url'       : 'detail.html',
                                     },
                                 ]
+                            },
+                            {
+                                'number'    : '9',
+                                'path'      : '<path d="M556.759 211.009H33.0195V278.615H556.759V211.009Z" /><path d="M33.4833 248.312H8.43066V279.862H33.4833V248.312Z" /><path d="M574.763 248.312H556.759V279.862H574.763V248.312Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '10',
+                                'path'      : '<path d="M556.759 143.451H33.0195V211.057H556.759V143.451Z" /><path d="M33.4913 180.635H14.9756V212.184H33.4913V180.635Z" /><path d="M581.812 180.635H556.76V212.184H581.812V180.635Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '11',
+                                'path'      : '<path d="M556.759 75.6133H33.0195V143.219H556.759V75.6133Z" /><path d="M33.4833 113.036H8.43066V144.586H33.4833V113.036Z" /><path d="M581.811 113.036H556.759V144.586H581.811V113.036Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
                             }
                         ]
                     },
@@ -4321,8 +4387,128 @@
                         'titlemin'  : '4',
                         'deadline'  : 'III квартал 2027',
                         'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'files/select-visual-floors.svg',
+                        'scheme'    : 'files/select-visual-floors-4.svg',
+                        'fcount'    : 18,
                         'floors'    : [
+                            {
+                                'number'    : '2',
+                                'path'      : '<path d="M539.94 1034.57H15.0596V1100.49H539.94V1034.57Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '3',
+                                'path'      : '<path d="M539.94 974.8H15.0596V1034.57H539.94V974.8Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '4',
+                                'path'      : '<path d="M539.94 914.73H15.0596V974.73H539.94V914.73Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '5',
+                                'path'      : '<path d="M539.94 854.9H15.0596V914.67H539.94V854.9Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '6',
+                                'path'      : '<path d="M539.94 794.87H15.0596V854.87H539.94V794.87Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '7',
+                                'path'      : '<path d="M539.94 735.04H15.0596V794.81H539.94V735.04Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '8',
+                                'path'      : '<path d="M539.94 674.98H15.0596V734.98H539.94V674.98Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '9',
+                                'path'      : '<path d="M539.94 615.15H15.0596V674.92H539.94V615.15Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '10',
+                                'path'      : '<path d="M539.94 555.12H15.0596V615.12H539.94V555.12Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '11',
+                                'path'      : '<path d="M539.94 495.29H15.0596V555.06H539.94V495.29Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '12',
+                                'path'      : '<path d="M539.94 435.29H15.0596V495.29H539.94V435.29Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '13',
+                                'path'      : '<path d="M539.94 375.45H15.0596V435.22H539.94V375.45Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '14',
+                                'path'      : '<path d="M539.94 315.42H15.0596V375.42H539.94V315.42Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '15',
+                                'path'      : '<path d="M539.94 255.59H15.0596V315.36H539.94V255.59Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '16',
+                                'path'      : '<path d="M539.94 195.9H15.0596V255.9H539.94V195.9Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '17',
+                                'path'      : '<path d="M539.94 136.07H15.0596V195.84H539.94V136.07Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '18',
+                                'path'      : '<path d="M539.94 76.04H15.0596V136.04H539.94V76.04Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            }
                         ]
                     },
                     {
@@ -4331,11 +4517,12 @@
                         'titlemin'  : '5',
                         'deadline'  : 'IV квартал 2027',
                         'photo'     : 'files/select-visual-build.jpg',
-                        'scheme'    : 'files/select-visual-floors.svg',
+                        'scheme'    : 'files/select-visual-floors-5.svg',
+                        'fcount'    : 16,
                         'floors'    : [
                             {
-                                'number'    : '3',
-                                'path'      : '<path d="M532.627 835.084H64.8311V870.311H532.627V835.084Z" /><path d="M64.8302 862.648H46.7832V869.755H64.8302V862.648Z" />',
+                                'number'    : '2',
+                                'path'      : '<path d="M524 775H78V817H524V775Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4428,8 +4615,8 @@
                                 ]
                             },
                             {
-                                'number'    : '4',
-                                'path'      : '<path d="M532.627 787.164H64.8311V835.104H532.627V787.164Z" /><path d="M64.8302 815.153H51.7852V837.561H64.8302V815.153Z" />',
+                                'number'    : '3',
+                                'path'      : '<path d="M522.2 723.815H79.2236V774.574H522.2V723.815Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4522,8 +4709,8 @@
                                 ]
                             },
                             {
-                                'number'    : '5',
-                                'path'      : '<path d="M532.627 739.253H64.8311V787.193H532.627V739.253Z" />',
+                                'number'    : '4',
+                                'path'      : '<path d="M522.2 673.063H79.2236V723.822H522.2V673.063Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4541,8 +4728,8 @@
                                 ]
                             },
                             {
-                                'number'    : '6',
-                                'path'      : '<path d="M532.627 691.256H64.8311V739.196H532.627V691.256Z" /><path d="M64.8302 719.252H51.7852V741.66H64.8302V719.252Z" />',
+                                'number'    : '5',
+                                'path'      : '<path d="M522.2 622.287H79.2236V673.045H522.2V622.287Z" />',
                                 'scheme'    : 'files/select-visual-floor.svg',
                                 'flats'     : [
                                     {
@@ -4557,6 +4744,83 @@
                                         ],
                                         'url'       : 'detail.html',
                                     },
+                                ]
+                            },
+                            {
+                                'number'    : '6',
+                                'path'      : '<path d="M522.2 571.535H79.2236V622.293H522.2V571.535Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '7',
+                                'path'      : '<path d="M522.2 520.878H79.2236V571.636H522.2V520.878Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '8',
+                                'path'      : '<path d="M522.2 470.126H79.2236V520.884H522.2V470.126Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '9',
+                                'path'      : '<path d="M522.2 419.351H79.2236V470.109H522.2V419.351Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '10',
+                                'path'      : '<path d="M522.2 368.604H79.2236V419.362H522.2V368.604Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '11',
+                                'path'      : '<path d="M522.2 317.84H79.2236V368.598H522.2V317.84Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '12',
+                                'path'      : '<path d="M522.2 267.094H79.2236V317.852H522.2V267.094Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '13',
+                                'path'      : '<path d="M522.2 216.312H79.2236V267.07H522.2V216.312Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '14',
+                                'path'      : '<path d="M522.2 165.565H79.2236V216.324H522.2V165.565Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '15',
+                                'path'      : '<path d="M522.2 115.076H79.2236V165.834H522.2V115.076Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
+                                ]
+                            },
+                            {
+                                'number'    : '16',
+                                'path'      : '<path d="M522.2 64.3242H79.2236V115.082H522.2V64.3242Z" />',
+                                'scheme'    : 'files/select-visual-floor.svg',
+                                'flats'     : [
                                 ]
                             }
                         ]
